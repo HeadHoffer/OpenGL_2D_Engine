@@ -16,19 +16,22 @@ public:
     unsigned int ID;
 
     // constructor reads and builds the shader
-    Shader(const char* vertexPath, const char* fragmentPath)
+    Shader(std::string vertexPath, std::string fragmentPath)
     {
         std::string vertexCode;
         std::string fragmentCode;
         std::ifstream vShaderFile;
         std::ifstream fShaderFile;
 
+        const char* vPath = vertexPath.c_str();
+        const char* fPath = fragmentPath.c_str();
+
         vShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
         fShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
         try
         {
-            vShaderFile.open(vertexPath);
-            fShaderFile.open(fragmentPath);
+            vShaderFile.open(vPath);
+            fShaderFile.open(fPath);
             std::stringstream vShaderStream, fShaderStream;
 
             vShaderStream << vShaderFile.rdbuf();

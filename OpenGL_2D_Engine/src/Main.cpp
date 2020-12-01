@@ -34,9 +34,9 @@ int main(int argc, char* argv[])
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		return -1;
 	}
-	//std::string path = std::filesystem::current_path().string() + "\\Shaders\\";
-	//Shader shaderProgram(path + "vShader01.vs", path + "vShader01.fs");
-	Shader shaderProgram("F:\\Programming\\OpenGL_2D_Engine\\OpenGL_2D_Engine\\x64\\Debug\\vShader_01.vs", "F:\\Programming\\OpenGL_2D_Engine\\OpenGL_2D_Engine\\x64\\Debug\\vShader_01.fs");
+	std::string path = std::filesystem::current_path().string() + "\\Shaders\\";
+	Shader shaderProgram(path + "vShader_01.vs", path + "vShader_01.fs");
+	//Shader shaderProgram("F:\\Programming\\OpenGL_2D_Engine\\OpenGL_2D_Engine\\x64\\Debug\\vShader_01.vs", "F:\\Programming\\OpenGL_2D_Engine\\OpenGL_2D_Engine\\x64\\Debug\\vShader_01.fs");
 
 	float vertices[] = {
 		// positions         // colors
