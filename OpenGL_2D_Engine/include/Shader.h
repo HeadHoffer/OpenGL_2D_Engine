@@ -9,6 +9,7 @@
 #include <sstream>
 #include <iostream>
 
+#include <Light.h>
 
 class Shader
 {
@@ -131,6 +132,7 @@ public:
     {
         glUniform3fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]);
     }
+    // ------------------------------------------------------------------------
     void setVec3(const std::string& name, float x, float y, float z) const
     {
         glUniform3f(glGetUniformLocation(ID, name.c_str()), x, y, z);
@@ -140,6 +142,7 @@ public:
     {
         glUniform4fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]);
     }
+    // ------------------------------------------------------------------------
     void setVec4(const std::string& name, float x, float y, float z, float w) const
     {
         glUniform4f(glGetUniformLocation(ID, name.c_str()), x, y, z, w);
@@ -158,6 +161,54 @@ public:
     void setMat4(const std::string& name, const glm::mat4& mat) const
     {
         glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+    }
+    // ------------------------------------------------------------------------
+    void setPointLight(const PointLight& light) const
+    {
+        setVec3("pointLight.position", light.Position);
+        setVec3("pointLight.ambient", light.Ambient);
+        setVec3("pointLight.diffuse", light.Diffuse);
+        setVec3("pointLight.specular", light.Specular);
+        setFloat("pointLight.constant", light.Constant);
+        setFloat("pointLight.linear", light.Linear);
+        setFloat("pointLight.quadratic", light.Quadratic);
+    }
+    // ------------------------------------------------------------------------
+    void setDirLight(const DirLight& light) const
+    {
+        setVec3("dirLight.direction", light.Direction);
+        setVec3("dirLight.ambient", light.Ambient);
+        setVec3("dirLight.diffuse", light.Diffuse);
+        setVec3("dirLight.specular", light.Specular);
+    }
+    // ------------------------------------------------------------------------
+    void SetSpotLight(const SpotLight& light) const
+    {
+        setVec3("spotLight.position", light.Position);
+        setVec3("spotLight.direction", light.Direction);
+        setVec3("spotLight.ambient", light.Ambient);
+        setVec3("spotLight.diffuse", light.Diffuse);
+        setVec3("spotLight.specular", light.Specular);
+        setFloat("spotLight.constant", light.Constant);
+        setFloat("spotLight.linear", light.Linear);
+        setFloat("spotLight.quadratic", light.Quadratic);
+        setFloat("spotLight.cutOff", light.CutOff);
+        setFloat("spotLight.outerCutOff", light.OuterCutOff);
+    }
+
+    void SetPointLights(const std::vector<PointLight>& lights) const
+    {
+        for (int i = 0; i < lights.size(); i++)
+        {
+            std::string name = "pointLights[" + std::to_string(i) + (std::string)"].";
+            setVec3(name + "position", lights[i].Position);
+            setVec3(name + "ambient", lights[i].Ambient);
+            setVec3(name + "diffuse", lights[i].Diffuse);
+            setVec3(name + "specular", lights[i].Specular);
+            setFloat(name + "constant", lights[i].Constant);
+            setFloat(name + "linear", lights[i].Linear);
+            setFloat(name + "quadratic", lights[i].Quadratic);
+        }
     }
 };
 
