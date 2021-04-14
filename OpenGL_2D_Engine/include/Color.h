@@ -20,5 +20,8 @@ public:
 	static glm::vec3 Cyan;
 	static glm::vec3 White;
 	static glm::vec3 Black;
+	static glm::vec3 Gray;
+	static glm::vec3 DarkGray;
+	static glm::vec3 LightGray;
 };
 #endif

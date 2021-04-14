@@ -14,7 +14,7 @@ public:
 	glm::vec3 Ambient = glm::vec3(0.05f, 0.05f, 0.05f);
 
 	//Diffusion value of the light
-	glm::vec3 Diffuse = glm::vec3(0.5f, 0.5f, 0.5f);
+	glm::vec3 Diffuse = Color::White;
 
 	//The reflection strength of the light
 	glm::vec3 Specular = Color::White;
